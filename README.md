@@ -30,7 +30,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "ticketsUrl": {
+    "tickets": {
       "description": "Link to tickets",
       "type": "string"
     },
@@ -49,6 +49,42 @@
 ```
 
 **/tickets/:id**
+Описание билета:
+
+``` json
+{
+    "title": "Ticket description",
+    "type" : "Object",
+    "properties": {
+        "_self": {
+            "description": "Link to event",
+            "type": "string"
+        },
+	"owner": {
+	    "description": "Owner username",
+	    "type": "String",
+	   
+	},
+	"eventName": {
+	    "description": "Name of event",
+	    "type": "String",
+	   
+	},
+	"event": {
+	    "description": "Link to event",
+	    "type": "String"
+	},
+	"price": {
+	    "description": "Ticket price",
+	    "type": "number"
+	},
+	"status": {
+	  "description": "Ticket status",
+	  "type": "string" 
+	}
+    }
+}
+```
 
 **/events**
 

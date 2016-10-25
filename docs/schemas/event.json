@@ -1,0 +1,33 @@
+{
+  "title": "Event description",
+  "type": "object",
+  "properties": {
+    "_self": {
+      "description": "Link to event",
+      "type": "string"
+    },
+    "name": {
+      "description": "Event name",
+      "type": "string"
+    },
+    "date": {
+      "description": "Date if event",
+      "type": "string",
+      "format": "date-time"
+    },
+    "tickets": {
+      "description": "Link to tickets",
+      "type": "string"
+    },
+    "ticketsAmount": {
+      "description": "Full tickets amount for event",
+      "type": "integer",
+      "minimum": 0
+    },
+    "freeTicketsAmount": {
+      "description": "Full tickets amount for event",
+            "type": "integer",
+      "minimum": 0
+    }
+  }
+}

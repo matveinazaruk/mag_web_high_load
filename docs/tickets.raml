@@ -1,0 +1,76 @@
+#%RAML 0.8
+
+title: Tickets booking API
+version: v1
+
+schemas:
+  - event: !include schemas/event.json
+  - ticket: !include schemas/ticket.json
+
+
+/events:
+  get:
+    description: Retrieve events list
+    responses:
+      200:
+        body:
+          application/json:
+  post:
+    description: Creates new event    
+    responses:
+      201:
+        body:
+          application/json:
+  /{eventId}:
+    get:
+      description: Retrieve scpecific event details
+      responses:
+        200:          
+          body:
+            application/json:
+              schema: event
+    put:    
+      description: Update event properties
+      body:
+        application/json:
+          schema: event
+      responses:
+        200:          
+          body:
+            application/json:
+              schema: event
+    /tickets:
+      get:
+        description: Retrieve a list of tickets for specified eventId
+        responses:
+          200:          
+            body:
+              application/json:
+
+/tickets:
+  /{ticketId}:
+    get:
+      description: Retrieve ticket information
+      responses:
+        200:          
+          body:
+            application/json:
+              schema: ticket
+    patch:
+      description: Modify ticket status
+      body:
+        application/json:
+          schema: ticket
+      responses:
+        200:          
+          body:
+            application/json:
+
+/users:
+  /{userId}/tickets:
+    get:
+      description: Retrieve all tickets for specified userId
+      responses:
+        200:          
+          body:
+            application/json:

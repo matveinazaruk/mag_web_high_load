@@ -1,0 +1,19 @@
+{
+  "title": "Ticket modification",
+  "type" : "Object",
+  "properties": {
+    "id": {
+      "description": "ticket id",
+      "type": "number"
+    },
+    "owner": {
+      "description": "Owner username",
+      "type": "string"
+    },
+    "status": {
+      "description": "Ticket status",
+      "type": "string" 
+    }
+  },
+  "required": ["id"]
+}

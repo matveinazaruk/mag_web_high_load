@@ -1,0 +1,20 @@
+{
+  "hits": 3,
+  "tickets": [
+    {
+      "id": 1,
+      "ticketUrl": "tickets/1",
+      "details": "Sector A",
+    },
+    {
+      "id": 2,
+      "ticketUrl": "tickets/2",
+      "details": "Sector B",
+    },
+    {
+      "id": 3,
+      "ticketUrl": "tickets/3",
+      "details": "Sector B",
+    },
+  ]
+}

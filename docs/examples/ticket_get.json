@@ -1,0 +1,9 @@
+{
+  "url": "/tickets/2",
+  "id": 2,
+  "owner": "bob",
+  "eventName": "Very interesting event",
+  "eventUrl": "events/1",
+  "price": 35.5,
+  "status": "free"
+}

@@ -8,7 +8,7 @@
     },
     "id": {        
       "description": "Event id",
-      "type": "number"
+      "type": "integer"
     },
     "name": {
       "description": "Event name",
@@ -19,7 +19,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "tickets_url": {
+    "ticketsUrl": {
       "description": "Link to tickets",
       "type": "string"
     },
@@ -33,6 +33,6 @@
       "type": "integer",
       "minimum": 0
     },
-    "required": ["url", "id", "name", "date", "tickets_url", "ticketsAmount", "freeTicketsAmount"]
+    "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
 }

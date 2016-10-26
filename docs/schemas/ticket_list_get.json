@@ -1,8 +1,8 @@
 {
   "description": "Tickets list information",
-  "type": "list",
+  "type": "object",
   "properties": {
-    "amount": {
+    "hits": {
       "decription": "List length",
       "type": "integer"  
     },
@@ -14,13 +14,17 @@
         "properties": {        
           "id": {
             "description": "Ticket id",
-            "type": "number",
+            "type": "integer",
             "required": true
           },
-          "ticket_url": {
+          "ticketUrl": {
             "description": "Link to ticket",
             "type": "string",
             "required": true
+          },
+          "details": {
+            "description": "Any ticket details",
+            "type": "string"  
           }
         }
       }

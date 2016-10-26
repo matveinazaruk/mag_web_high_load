@@ -1,4 +1,4 @@
-<!DOCTYPE HTML><html><head><title>Tickets booking API API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 3.0.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+<!DOCTYPE HTML><html><head><title>Tickets booking API API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 3.0.1"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
       $(document).ready(function() {
         $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
           hljs.highlightBlock(block);
@@ -176,7 +176,7 @@
     },
     "id": {        
       "description": "Event id",
-      "type": "number"
+      "type": "integer"
     },
     "name": {
       "description": "Event name",
@@ -187,7 +187,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "tickets_url": {
+    "ticketsUrl": {
       "description": "Link to tickets",
       "type": "string"
     },
@@ -201,7 +201,7 @@
       "type": "integer",
       "minimum": 0
     },
-    "required": ["url", "id", "name", "date", "tickets_url", "ticketsAmount", "freeTicketsAmount"]
+    "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
 }</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Error description",
@@ -235,7 +235,7 @@
     },
     "id": {        
       "description": "Event id",
-      "type": "number"
+      "type": "integer"
     },
     "name": {
       "description": "Event name",
@@ -246,7 +246,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "tickets_url": {
+    "ticketsUrl": {
       "description": "Link to tickets",
       "type": "string"
     },
@@ -260,7 +260,7 @@
       "type": "integer",
       "minimum": 0
     },
-    "required": ["url", "id", "name", "date", "tickets_url", "ticketsAmount", "freeTicketsAmount"]
+    "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
 }</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="events__eventId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/events</span>/{eventId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update event properties</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events__eventId__put_request" data-toggle="tab">Request</a></li><li><a href="#events__eventId__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events__eventId__put_request"><h3>URI Parameters</h3><ul><li><strong>eventId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Event description",
@@ -272,7 +272,7 @@
     },
     "id": {        
       "description": "Event id",
-      "type": "number"
+      "type": "integer"
     },
     "name": {
       "description": "Event name",
@@ -283,7 +283,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "tickets_url": {
+    "ticketsUrl": {
       "description": "Link to tickets",
       "type": "string"
     },
@@ -297,7 +297,7 @@
       "type": "integer",
       "minimum": 0
     },
-    "required": ["url", "id", "name", "date", "tickets_url", "ticketsAmount", "freeTicketsAmount"]
+    "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
 }</code></pre></div><div class="tab-pane" id="events__eventId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Event description",
@@ -309,7 +309,7 @@
     },
     "id": {        
       "description": "Event id",
-      "type": "number"
+      "type": "integer"
     },
     "name": {
       "description": "Event name",
@@ -320,7 +320,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "tickets_url": {
+    "ticketsUrl": {
       "description": "Link to tickets",
       "type": "string"
     },
@@ -334,7 +334,7 @@
       "type": "integer",
       "minimum": 0
     },
-    "required": ["url", "id", "name", "date", "tickets_url", "ticketsAmount", "freeTicketsAmount"]
+    "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
 }</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Error description",
@@ -360,9 +360,9 @@
   "required": ["message"]
 }</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_events__eventId__tickets"><span class="parent">/events/{eventId}</span>/tickets</a> <span class="methods"><a href="#events__eventId__tickets_get"><span class="badge badge_get">get</span></a> <a href="#events__eventId__tickets_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_events__eventId__tickets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#events__eventId__tickets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve a list of tickets for specified eventId</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#events__eventId__tickets_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create tickets amount for event</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="events__eventId__tickets_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/events/{eventId}</span>/tickets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve a list of tickets for specified eventId</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events__eventId__tickets_get_request" data-toggle="tab">Request</a></li><li><a href="#events__eventId__tickets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events__eventId__tickets_get_request"><h3>URI Parameters</h3><ul><li><strong>eventId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="events__eventId__tickets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "description": "Tickets list information",
-  "type": "list",
+  "type": "object",
   "properties": {
-    "amount": {
+    "hits": {
       "decription": "List length",
       "type": "integer"  
     },
@@ -374,19 +374,43 @@
         "properties": {        
           "id": {
             "description": "Ticket id",
-            "type": "number",
+            "type": "integer",
             "required": true
           },
-          "ticket_url": {
+          "ticketUrl": {
             "description": "Link to ticket",
             "type": "string",
             "required": true
+          },
+          "details": {
+            "description": "Any ticket details",
+            "type": "string"  
           }
         }
       }
     }
   }
-}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="events__eventId__tickets_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/events/{eventId}</span>/tickets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create tickets amount for event</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events__eventId__tickets_post_request" data-toggle="tab">Request</a></li><li><a href="#events__eventId__tickets_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events__eventId__tickets_post_request"><h3>URI Parameters</h3><ul><li><strong>eventId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "hits": 3,
+  "tickets": [
+    {
+      "id": 1,
+      "ticketUrl": "tickets/1",
+      "details": "Sector A",
+    },
+    {
+      "id": 2,
+      "ticketUrl": "tickets/2",
+      "details": "Sector B",
+    },
+    {
+      "id": 3,
+      "ticketUrl": "tickets/3",
+      "details": "Sector B",
+    },
+  ]
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="events__eventId__tickets_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/events/{eventId}</span>/tickets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create tickets amount for event</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events__eventId__tickets_post_request" data-toggle="tab">Request</a></li><li><a href="#events__eventId__tickets_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events__eventId__tickets_post_request"><h3>URI Parameters</h3><ul><li><strong>eventId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Ticket creation",
   "type" : "Object",
   "properties": {
@@ -398,14 +422,18 @@
       "description": "Amount of tickets for specified price",
       "type": "integer",
       "minimum": 1
+    },
+    "details": {      
+      "description": "Any ticket details",
+      "type": "string"  
     }
   },
   "required": ["price"]
 }</code></pre></div><div class="tab-pane" id="events__eventId__tickets_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "description": "Tickets list information",
-  "type": "list",
+  "type": "object",
   "properties": {
-    "amount": {
+    "hits": {
       "decription": "List length",
       "type": "integer"  
     },
@@ -417,19 +445,43 @@
         "properties": {        
           "id": {
             "description": "Ticket id",
-            "type": "number",
+            "type": "integer",
             "required": true
           },
-          "ticket_url": {
+          "ticketUrl": {
             "description": "Link to ticket",
             "type": "string",
             "required": true
+          },
+          "details": {
+            "description": "Any ticket details",
+            "type": "string"  
           }
         }
       }
     }
   }
-}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="tickets" class="panel-title">/tickets</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_tickets__ticketId_"><span class="parent">/tickets</span>/{ticketId}</a> <span class="methods"><a href="#tickets__ticketId__get"><span class="badge badge_get">get</span></a> <a href="#tickets__ticketId__patch"><span class="badge badge_patch">patch</span></a> <a href="#tickets__ticketId__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_tickets__ticketId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#tickets__ticketId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve ticket information</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#tickets__ticketId__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Modify ticket status</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#tickets__ticketId__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete specified ticket</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="tickets__ticketId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/tickets</span>/{ticketId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve ticket information</p></div><ul class="nav nav-tabs"><li class="active"><a href="#tickets__ticketId__get_request" data-toggle="tab">Request</a></li><li><a href="#tickets__ticketId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tickets__ticketId__get_request"><h3>URI Parameters</h3><ul><li><strong>ticketId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="tickets__ticketId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "hits": 3,
+  "tickets": [
+    {
+      "id": 1,
+      "ticketUrl": "tickets/1",
+      "details": "Sector A",
+    },
+    {
+      "id": 2,
+      "ticketUrl": "tickets/2",
+      "details": "Sector B",
+    },
+    {
+      "id": 3,
+      "ticketUrl": "tickets/3",
+      "details": "Sector B",
+    },
+  ]
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="tickets" class="panel-title">/tickets</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_tickets__ticketId_"><span class="parent">/tickets</span>/{ticketId}</a> <span class="methods"><a href="#tickets__ticketId__get"><span class="badge badge_get">get</span></a> <a href="#tickets__ticketId__patch"><span class="badge badge_patch">patch</span></a> <a href="#tickets__ticketId__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_tickets__ticketId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#tickets__ticketId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve ticket information</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#tickets__ticketId__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Modify ticket status</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#tickets__ticketId__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete specified ticket</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="tickets__ticketId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/tickets</span>/{ticketId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve ticket information</p></div><ul class="nav nav-tabs"><li class="active"><a href="#tickets__ticketId__get_request" data-toggle="tab">Request</a></li><li><a href="#tickets__ticketId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tickets__ticketId__get_request"><h3>URI Parameters</h3><ul><li><strong>ticketId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="tickets__ticketId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Ticket description",
   "type" : "Object",
   "properties": {
@@ -439,7 +491,7 @@
     },
     "id": {
       "description": "ticket id",
-      "type": "number"
+      "type": "integer"
     },
     "owner": {
       "description": "Owner username",
@@ -449,9 +501,13 @@
       "description": "Name of event",
       "type": "string"
     },
-    "event": {
+    "eventUrl": {
       "description": "Link to event",
       "type": "string"
+    },
+    "details": {
+      "description": "Any ticket details",
+      "type": "string"  
     },
     "price": {
       "description": "Ticket price",
@@ -459,17 +515,26 @@
     },
     "status": {
       "description": "Ticket status",
-      "type": "string" 
+      "type": "string",
+      "enum": ["free", "pending", "sold"]
     }
   },
-  "required": ["url", "id", "owner", "eventName", "event", "price", "status"]
+  "required": ["url", "id", "owner", "eventName", "eventUrl", "price", "status"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "url": "/tickets/2",
+  "id": 2,
+  "owner": "bob",
+  "eventName": "Very interesting event",
+  "eventUrl": "events/1",
+  "price": 35.5,
+  "status": "free"
 }</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="tickets__ticketId__patch"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/tickets</span>/{ticketId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Modify ticket status</p></div><ul class="nav nav-tabs"><li class="active"><a href="#tickets__ticketId__patch_request" data-toggle="tab">Request</a></li><li><a href="#tickets__ticketId__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tickets__ticketId__patch_request"><h3>URI Parameters</h3><ul><li><strong>ticketId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Ticket modification",
   "type" : "Object",
   "properties": {
     "id": {
       "description": "ticket id",
-      "type": "number"
+      "type": "integer"
     },
     "owner": {
       "description": "Owner username",
@@ -481,6 +546,10 @@
     }
   },
   "required": ["id"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "id": 2,
+  "owner": "bob",
+  "status": "sold"
 }</code></pre></div><div class="tab-pane" id="tickets__ticketId__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Ticket description",
   "type" : "Object",
@@ -491,7 +560,7 @@
     },
     "id": {
       "description": "ticket id",
-      "type": "number"
+      "type": "integer"
     },
     "owner": {
       "description": "Owner username",
@@ -501,9 +570,13 @@
       "description": "Name of event",
       "type": "string"
     },
-    "event": {
+    "eventUrl": {
       "description": "Link to event",
       "type": "string"
+    },
+    "details": {
+      "description": "Any ticket details",
+      "type": "string"  
     },
     "price": {
       "description": "Ticket price",
@@ -511,15 +584,24 @@
     },
     "status": {
       "description": "Ticket status",
-      "type": "string" 
+      "type": "string",
+      "enum": ["free", "pending", "sold"]
     }
   },
-  "required": ["url", "id", "owner", "eventName", "event", "price", "status"]
+  "required": ["url", "id", "owner", "eventName", "eventUrl", "price", "status"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "url": "/tickets/2",
+  "id": 2,
+  "owner": "bob",
+  "eventName": "Very interesting event",
+  "eventUrl": "events/1",
+  "price": 35.5,
+  "status": "free"
 }</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="tickets__ticketId__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/tickets</span>/{ticketId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete specified ticket</p></div><ul class="nav nav-tabs"><li class="active"><a href="#tickets__ticketId__delete_request" data-toggle="tab">Request</a></li><li><a href="#tickets__ticketId__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tickets__ticketId__delete_request"><h3>URI Parameters</h3><ul><li><strong>ticketId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="tickets__ticketId__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="users" class="panel-title">/users</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_users__userId__tickets"><span class="parent">/users</span>/{userId}/tickets</a> <span class="methods"><a href="#users__userId__tickets_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_users__userId__tickets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#users__userId__tickets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve all tickets for specified userId</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="users__userId__tickets_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/users</span>/{userId}/tickets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve all tickets for specified userId</p></div><ul class="nav nav-tabs"><li class="active"><a href="#users__userId__tickets_get_request" data-toggle="tab">Request</a></li><li><a href="#users__userId__tickets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="users__userId__tickets_get_request"><h3>URI Parameters</h3><ul><li><strong>userId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="users__userId__tickets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "description": "Tickets list information",
-  "type": "list",
+  "type": "object",
   "properties": {
-    "amount": {
+    "hits": {
       "decription": "List length",
       "type": "integer"  
     },
@@ -531,16 +613,40 @@
         "properties": {        
           "id": {
             "description": "Ticket id",
-            "type": "number",
+            "type": "integer",
             "required": true
           },
-          "ticket_url": {
+          "ticketUrl": {
             "description": "Link to ticket",
             "type": "string",
             "required": true
+          },
+          "details": {
+            "description": "Any ticket details",
+            "type": "string"  
           }
         }
       }
     }
   }
-}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#events">/events</a></li><li><a href="#tickets">/tickets</a></li><li><a href="#users">/users</a></li></ul></div></div></div></div></body></html>
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "hits": 3,
+  "tickets": [
+    {
+      "id": 1,
+      "ticketUrl": "tickets/1",
+      "details": "Sector A",
+    },
+    {
+      "id": 2,
+      "ticketUrl": "tickets/2",
+      "details": "Sector B",
+    },
+    {
+      "id": 3,
+      "ticketUrl": "tickets/3",
+      "details": "Sector B",
+    },
+  ]
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#events">/events</a></li><li><a href="#tickets">/tickets</a></li><li><a href="#users">/users</a></li></ul></div></div></div></div></body></html>

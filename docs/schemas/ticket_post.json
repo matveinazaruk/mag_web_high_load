@@ -10,6 +10,10 @@
       "description": "Amount of tickets for specified price",
       "type": "integer",
       "minimum": 1
+    },
+    "details": {      
+      "description": "Any ticket details",
+      "type": "string"  
     }
   },
   "required": ["price"]

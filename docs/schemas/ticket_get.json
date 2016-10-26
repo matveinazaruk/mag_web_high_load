@@ -8,7 +8,7 @@
     },
     "id": {
       "description": "ticket id",
-      "type": "number"
+      "type": "integer"
     },
     "owner": {
       "description": "Owner username",
@@ -18,9 +18,13 @@
       "description": "Name of event",
       "type": "string"
     },
-    "event": {
+    "eventUrl": {
       "description": "Link to event",
       "type": "string"
+    },
+    "details": {
+      "description": "Any ticket details",
+      "type": "string"  
     },
     "price": {
       "description": "Ticket price",
@@ -28,8 +32,9 @@
     },
     "status": {
       "description": "Ticket status",
-      "type": "string" 
+      "type": "string",
+      "enum": ["free", "pending", "sold"]
     }
   },
-  "required": ["url", "id", "owner", "eventName", "event", "price", "status"]
+  "required": ["url", "id", "owner", "eventName", "eventUrl", "price", "status"]
 }

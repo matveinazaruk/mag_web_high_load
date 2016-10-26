@@ -1,0 +1,29 @@
+{
+  "description": "Tickets list information",
+  "type": "list",
+  "properties": {
+    "amount": {
+      "decription": "List length",
+      "type": "integer"  
+    },
+    "tickets": {
+      "descriptions": "Tickets list",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {        
+          "id": {
+            "description": "Ticket id",
+            "type": "number",
+            "required": true
+          },
+          "ticket_url": {
+            "description": "Link to ticket",
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

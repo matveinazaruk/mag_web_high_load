@@ -2,21 +2,25 @@
   "title": "Ticket description",
   "type" : "Object",
   "properties": {
-    "_self": {
-      "description": "Link to event",
+    "url": {
+      "description": "Link to ticket",
       "type": "string"
+    },
+    "id": {
+      "description": "ticket id",
+      "type": "number"
     },
     "owner": {
       "description": "Owner username",
-      "type": "String"
+      "type": "string"
     },
     "eventName": {
       "description": "Name of event",
-      "type": "String"
+      "type": "string"
     },
     "event": {
       "description": "Link to event",
-      "type": "String"
+      "type": "string"
     },
     "price": {
       "description": "Ticket price",
@@ -26,5 +30,6 @@
       "description": "Ticket status",
       "type": "string" 
     }
-  }
+  },
+  "required": ["url", "id", "owner", "eventName", "event", "price", "status"]
 }

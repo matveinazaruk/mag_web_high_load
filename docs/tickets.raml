@@ -4,9 +4,13 @@ title: Tickets booking API
 version: v1
 
 schemas:
-  - event: !include schemas/event.json
-  - ticket: !include schemas/ticket.json
-
+  - event_get: !include schemas/event_get.json
+  - event_post: !include schemas/event_post.json
+  - ticket_get: !include schemas/ticket_get.json
+  - ticket_post: !include schemas/ticket_post.json
+  - ticket_patch: !include schemas/ticket_patch.json
+  - ticket_list_get: !include schemas/ticket_list_get.json
+  - error: !include schemas/error.json
 
 /events:
   get:
@@ -16,11 +20,19 @@ schemas:
         body:
           application/json:
   post:
-    description: Creates new event    
+    description: Creates new event
+    body:
+      application/json:
+        schema: event_post        
     responses:
       201:
         body:
           application/json:
+            schema: event_get
+      422:
+        body:
+          application/json:
+            schema: error
   /{eventId}:
     get:
       description: Retrieve scpecific event details
@@ -28,43 +40,64 @@ schemas:
         200:          
           body:
             application/json:
-              schema: event
+              schema: event_get
     put:    
       description: Update event properties
       body:
         application/json:
-          schema: event
+          schema: event_get
       responses:
         200:          
           body:
             application/json:
-              schema: event
+              schema: event_get
+        422:
+          body:
+            application/json:
+              schema: error
     /tickets:
       get:
         description: Retrieve a list of tickets for specified eventId
         responses:
-          200:          
+          200:
             body:
               application/json:
+                schema: ticket_list_get
+      post:
+        description: Create tickets amount  for event
+        body:        
+          application/json:
+            schema: ticket_post
+        responses:
+          201:          
+            body:
+              application/json:
+                schema: ticket_list_get
+
 
 /tickets:
   /{ticketId}:
     get:
       description: Retrieve ticket information
       responses:
-        200:          
+        200:
           body:
             application/json:
-              schema: ticket
+              schema: ticket_get
     patch:
       description: Modify ticket status
       body:
         application/json:
-          schema: ticket
+          schema: ticket_patch
       responses:
         200:          
           body:
             application/json:
+              schema: ticket_get
+    delete:
+      description: Delete specified ticket
+      responses:
+        204:
 
 /users:
   /{userId}/tickets:
@@ -74,3 +107,4 @@ schemas:
         200:          
           body:
             application/json:
+              schema: ticket_list_get

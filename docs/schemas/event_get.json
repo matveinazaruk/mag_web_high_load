@@ -2,9 +2,13 @@
   "title": "Event description",
   "type": "object",
   "properties": {
-    "_self": {
+    "url": {
       "description": "Link to event",
       "type": "string"
+    },
+    "id": {        
+      "description": "Event id",
+      "type": "number"
     },
     "name": {
       "description": "Event name",
@@ -15,7 +19,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "tickets": {
+    "tickets_url": {
       "description": "Link to tickets",
       "type": "string"
     },
@@ -26,8 +30,9 @@
     },
     "freeTicketsAmount": {
       "description": "Full tickets amount for event",
-            "type": "integer",
+      "type": "integer",
       "minimum": 0
-    }
+    },
+    "required": ["url", "id", "name", "date", "tickets_url", "ticketsAmount", "freeTicketsAmount"]
   }
 }

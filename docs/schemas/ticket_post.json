@@ -1,0 +1,16 @@
+{
+  "title": "Ticket creation",
+  "type" : "Object",
+  "properties": {
+    "price": {
+      "description": "Ticket price",
+      "type": "number"
+    },
+    "amount": {
+      "description": "Amount of tickets for specified price",
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": ["price"]
+}

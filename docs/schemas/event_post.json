@@ -1,0 +1,21 @@
+{
+  "title": "Event creation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "Event name",
+      "type": "string"
+    },
+    "date": {
+      "description": "Date if event",
+      "type": "string",
+      "format": "date-time"
+    },
+    "ticketsAmount": {
+      "description": "Full tickets amount for event",
+      "type": "integer",
+      "minimum": 0
+    },
+    "required": ["url", "id", "name", "date", "ticketsAmount"]
+  }
+}

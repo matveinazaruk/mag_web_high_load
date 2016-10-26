@@ -1,0 +1,23 @@
+{
+  "title": "Error description",
+  "type": "object",
+  "properties": {
+    "message": {
+      "description": "Error message",
+      "type": "string"
+    },
+    "erorrs": {
+      "properties": {
+        "field": {
+          "description": "Field name",
+          "type": "string"
+        },
+        "code": {
+          "description": "Error code",
+          "type": "string"
+        }
+      }
+    },
+    "required": ["message"]
+  }
+}

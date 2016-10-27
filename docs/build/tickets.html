@@ -1,4 +1,4 @@
-<!DOCTYPE HTML><html><head><title>Tickets booking API API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 3.0.1"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+<!DOCTYPE HTML><html><head><title>Tickets booking API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 3.0.1"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
       $(document).ready(function() {
         $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
           hljs.highlightBlock(block);
@@ -151,7 +151,101 @@
         word-wrap: normal;
         white-space: pre;
       }
-    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Tickets booking API API documentation <small>version v1</small></h1><p></p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="events" class="panel-title">/events</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_events"><span class="parent"></span>/events</a> <span class="methods"><a href="#events_get"><span class="badge badge_get">get</span></a> <a href="#events_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_events" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#events_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve events list</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#events_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Creates new event</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="events_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/events</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve events list</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="events_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/events</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates new event</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events_post_request" data-toggle="tab">Request</a></li><li><a href="#events_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Tickets booking API documentation <small>version v1</small></h1><p></p><h3 id="Tickets-api"><a href="#Tickets-api">Tickets api</a></h3><p>Api for buying tickets for any events<br>We have the next types of entities:</p><ul><li>event</li><li>ticket</li><li>user</li></ul><p>Api provides possibility to manage <em>events</em> and <em>tickets</em>, but not <em>users</em>.</p><h3 id="Description"><a href="#Description">Description</a></h3><p>All data is sent and recieved as JSON. Blank fields are included as <code>null</code> instead of being omitted. All timestamps are returned in ISO 8601 format:</p><pre><code>YYYY-MM-DDThh:mm:ss.sTZD
+</code></pre><p>Specifying of timezone is not nessesary.</p><h3 id="Summary-representation"><a href="#Summary-representation">Summary representation</a></h3><p>When you fetch a list of resources, the response includes a subset of the attributes for that resource. This is the "summary" representation of the resource. You can see such behaviour when get list of tickets of list of events. If you need more attribute got to detailed representation (every item contains link for it).</p><h3 id="Detailed-representation"><a href="#Detailed-representation">Detailed representation</a></h3><p>When you fetch an individual resource, the response typically includes all attributes for that resource. This is the "detailed" representation of the resource.<br>The documentation provides an example response and their schemas for each API method. The example response illustrates all attributes that are returned by that method.</p><h3 id="Parameters"><a href="#Parameters">Parameters</a></h3><p>Api methods for get list can recieve parameters for filter, pagination and sorting. More information you can get reading the docs.</p><h3 id="Hypermedia"><a href="#Hypermedia">Hypermedia</a></h3><p>Many resources may have one or more <code>url</code> properties linking to other resources. F.e. summary items contains links to detailed, also parents and children have links to each other. These are meant to provide explicit URLs so that proper API clients don&#39;t need to construct URLs on their own. It is recommended that API clients use these. Doing so will make future upgrades of the API easier for developers.</p><h3 id="Pagination"><a href="#Pagination">Pagination</a></h3><p>All list requests provide pagination properties. Such as:</p><ul><li><em>size</em> - page size (default: 30)</li><li><em>offset</em> - offset from begginnig (default: 0) You can use them as query parameters like <code>?offset=30&amp;size=10</code></li></ul><h3 id="Sorting"><a href="#Sorting">Sorting</a></h3><p>List requests provide ability for sorting. You can sort by any of fields you can find in summary representation.</p><h3 id="Filtering"><a href="#Filtering">Filtering</a></h3><p>List requests also provide ability for f. You can filter by any of fields you can find in summary representation.</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="events" class="panel-title">/events</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_events"><span class="parent"></span>/events</a> <span class="methods"><a href="#events_get"><span class="badge badge_get">get</span></a> <a href="#events_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_events" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#events_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve events list</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#events_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Creates new event</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="events_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/events</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve events list</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events_get_request" data-toggle="tab">Request</a></li><li><a href="#events_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events_get_request"><h3>Query Parameters</h3><ul><li><strong>Sorting field</strong>: <em>(one of name, date, ticketsAmount, freeTicketsAmount)</em><p>Field to sort by</p><p><strong>Example</strong>:</p><pre>name</pre></li><li><strong>Sorting order</strong>: <em>(one of asc, desc)</em><p>Field to sort by</p><p><strong>Example</strong>:</p><pre>asc</pre></li><li><strong>Page size</strong>: <em>(integer)</em><p>Page size for pagination</p><p><strong>Example</strong>:</p><pre><code>10</code></pre></li><li><strong>Filter field</strong>: <em>(string)</em><p>Field to filter by connect. Used only with "value" parameter</p><p><strong>Example</strong>:</p><pre>name</pre></li><li><strong>Filter value</strong>: <em>(string)</em><p>Field to filter by connect. Used only with "value" parameter</p><p><strong>Example</strong>:</p><pre>Very interesting event</pre></li></ul></div><div class="tab-pane" id="events_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "description": "Event list information",
+  "type": "object",
+  "properties": {
+    "size": {
+      "decription": "Size of current list",
+      "type": "integer"  
+    },
+    "offset": {
+      "description": "Offset, for pagination",
+      "type": "integer"
+    },
+    "sort": {
+      "description": "Field name to sort",
+      "type": "string",
+      "enum": ["name", "date", "ticketsAmount", "freeTicketsAmount"]
+    },
+    "order": {
+      "description": "Sort order",
+      "type": "string",
+      "enum": ["asc", "desc"]
+    },
+    "hits": {
+      "decription": "Number of all hits",
+      "type": "integer"
+    },    
+    "items": {
+      "descriptions": "Events list",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {        
+          "id": {
+            "description": "Event id",
+            "type": "integer"
+          },
+          "url": {
+            "description": "Link to event details",
+            "type": "string"
+          },
+          "name": {
+            "description": "Event name",
+            "type": "string"  
+          },
+          "date": {
+            "description": "Date if event",
+            "type": "string",
+            "format": "date-time"
+          },
+          "ticketsUrl": {
+            "description": "Link to tickets",
+            "type": "string"
+          },
+          "ticketsAmount": {
+            "description": "Full tickets amount for event",
+            "type": "integer",
+            "minimum": 0
+          },
+          "freeTicketsAmount": {
+            "description": "Full tickets amount for event",
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "hits": 4,
+  "size": 2,
+  "offset": 1,
+  "sort": "name",
+  "order": "desc",
+  "items": [
+    {
+      "url": "/events/1",
+      "id": 1,
+      "name": "Very interesting event",
+      "date": "2016-10-27T15:00:00+03:00",
+      "ticketsUrl": "/event/1/tickets",
+      "ticketsAmount": 123,
+      "freeTicketsAmount": 101 
+    },
+    {
+      "url": "/events/2",
+      "id": 2,
+      "name": "One more very interesting event",
+      "date": "2016-12-21T19:00:00+03:00",
+      "ticketsUrl": "/event/2/tickets",
+      "ticketsAmount": 42,
+      "freeTicketsAmount": 24 
+    }
+  ]
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="events_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/events</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates new event</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events_post_request" data-toggle="tab">Request</a></li><li><a href="#events_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Event creation",
   "type": "object",
   "properties": {
@@ -203,6 +297,14 @@
     },
     "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "url": "/events/1",
+  "id": 1,
+  "name": "Very interesting event",
+  "date": "2016-10-27T15:00:00+03:00",
+  "ticketsUrl": "/event/1/tickets",
+  "ticketsAmount": 123,
+  "freeTicketsAmount": 101 
 }</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Error description",
   "type": "object",
@@ -262,6 +364,14 @@
     },
     "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "url": "/events/1",
+  "id": 1,
+  "name": "Very interesting event",
+  "date": "2016-10-27T15:00:00+03:00",
+  "ticketsUrl": "/event/1/tickets",
+  "ticketsAmount": 123,
+  "freeTicketsAmount": 101 
 }</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="events__eventId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/events</span>/{eventId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update event properties</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events__eventId__put_request" data-toggle="tab">Request</a></li><li><a href="#events__eventId__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events__eventId__put_request"><h3>URI Parameters</h3><ul><li><strong>eventId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Event description",
   "type": "object",
@@ -299,6 +409,14 @@
     },
     "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "url": "/events/1",
+  "id": 1,
+  "name": "Very interesting event",
+  "date": "2016-10-27T15:00:00+03:00",
+  "ticketsUrl": "/event/1/tickets",
+  "ticketsAmount": 123,
+  "freeTicketsAmount": 101 
 }</code></pre></div><div class="tab-pane" id="events__eventId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Event description",
   "type": "object",
@@ -336,6 +454,14 @@
     },
     "required": ["url", "id", "name", "date", "ticketsUrl", "ticketsAmount", "freeTicketsAmount"]
   }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "url": "/events/1",
+  "id": 1,
+  "name": "Very interesting event",
+  "date": "2016-10-27T15:00:00+03:00",
+  "ticketsUrl": "/event/1/tickets",
+  "ticketsAmount": 123,
+  "freeTicketsAmount": 101 
 }</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "title": "Error description",
   "type": "object",
@@ -358,15 +484,33 @@
     }
   },
   "required": ["message"]
-}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_events__eventId__tickets"><span class="parent">/events/{eventId}</span>/tickets</a> <span class="methods"><a href="#events__eventId__tickets_get"><span class="badge badge_get">get</span></a> <a href="#events__eventId__tickets_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_events__eventId__tickets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#events__eventId__tickets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve a list of tickets for specified eventId</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#events__eventId__tickets_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create tickets amount for event</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="events__eventId__tickets_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/events/{eventId}</span>/tickets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve a list of tickets for specified eventId</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events__eventId__tickets_get_request" data-toggle="tab">Request</a></li><li><a href="#events__eventId__tickets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events__eventId__tickets_get_request"><h3>URI Parameters</h3><ul><li><strong>eventId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="events__eventId__tickets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_events__eventId__tickets"><span class="parent">/events/{eventId}</span>/tickets</a> <span class="methods"><a href="#events__eventId__tickets_get"><span class="badge badge_get">get</span></a> <a href="#events__eventId__tickets_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_events__eventId__tickets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#events__eventId__tickets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve a list of tickets for specified</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#events__eventId__tickets_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create tickets amount for event</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="events__eventId__tickets_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/events/{eventId}</span>/tickets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve a list of tickets for specified</p></div><ul class="nav nav-tabs"><li class="active"><a href="#events__eventId__tickets_get_request" data-toggle="tab">Request</a></li><li><a href="#events__eventId__tickets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="events__eventId__tickets_get_request"><h3>URI Parameters</h3><ul><li><strong>eventId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>Sorting field</strong>: <em>(one of name, date, ticketsAmount, freeTicketsAmount)</em><p>Field to sort by</p><p><strong>Example</strong>:</p><pre>name</pre></li><li><strong>Sorting order</strong>: <em>(one of asc, desc)</em><p>Field to sort by</p><p><strong>Example</strong>:</p><pre>asc</pre></li><li><strong>Page size</strong>: <em>(integer)</em><p>Page size for pagination</p><p><strong>Example</strong>:</p><pre><code>10</code></pre></li><li><strong>Filter field</strong>: <em>(string)</em><p>Field to filter by connect. Used only with "value" parameter</p><p><strong>Example</strong>:</p><pre>price</pre></li><li><strong>Filter value</strong>: <em>(string)</em><p>Field to filter by connect. Used only with "value" parameter</p><p><strong>Example</strong>:</p><pre>150</pre></li></ul></div><div class="tab-pane" id="events__eventId__tickets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "description": "Tickets list information",
   "type": "object",
   "properties": {
-    "hits": {
-      "decription": "List length",
+    "size": {
+      "decription": "Size of current list",
       "type": "integer"  
     },
-    "tickets": {
+    "offset": {
+      "description": "Offset, for pagination",
+      "type": "integer"
+    },
+    "sort": {
+      "description": "Field name to sort",
+      "type": "string",
+      "enum": ["price", "eventName"]
+    },
+    "order": {
+      "description": "Sort order",
+      "type": "string",
+      "enum": ["asc", "desc"]
+    },
+    "hits": {
+      "decription": "Number of all hits",
+      "type": "integer"
+    }, 
+    "items": {
       "descriptions": "Tickets list",
       "type": "array",
       "items": {
@@ -374,17 +518,23 @@
         "properties": {        
           "id": {
             "description": "Ticket id",
-            "type": "integer",
-            "required": true
+            "type": "integer"
           },
-          "ticketUrl": {
+          "url": {
             "description": "Link to ticket",
-            "type": "string",
-            "required": true
+            "type": "string"
           },
           "details": {
             "description": "Any ticket details",
             "type": "string"  
+          },
+          "eventName": {
+            "description": "Event name",
+            "type": "string"  
+          },
+          "price": {
+            "description": "Ticket price",
+            "type": "number"  
           }
         }
       }
@@ -392,20 +542,20 @@
   }
 }</code></pre><p><strong>Example</strong>:</p><pre><code>{
   "hits": 3,
-  "tickets": [
+  "items": [
     {
       "id": 1,
-      "ticketUrl": "tickets/1",
+      "url": "tickets/1",
       "details": "Sector A",
     },
     {
       "id": 2,
-      "ticketUrl": "tickets/2",
+      "url": "tickets/2",
       "details": "Sector B",
     },
     {
       "id": 3,
-      "ticketUrl": "tickets/3",
+      "url": "tickets/3",
       "details": "Sector B",
     },
   ]
@@ -433,11 +583,29 @@
   "description": "Tickets list information",
   "type": "object",
   "properties": {
-    "hits": {
-      "decription": "List length",
+    "size": {
+      "decription": "Size of current list",
       "type": "integer"  
     },
-    "tickets": {
+    "offset": {
+      "description": "Offset, for pagination",
+      "type": "integer"
+    },
+    "sort": {
+      "description": "Field name to sort",
+      "type": "string",
+      "enum": ["price", "eventName"]
+    },
+    "order": {
+      "description": "Sort order",
+      "type": "string",
+      "enum": ["asc", "desc"]
+    },
+    "hits": {
+      "decription": "Number of all hits",
+      "type": "integer"
+    }, 
+    "items": {
       "descriptions": "Tickets list",
       "type": "array",
       "items": {
@@ -445,17 +613,23 @@
         "properties": {        
           "id": {
             "description": "Ticket id",
-            "type": "integer",
-            "required": true
+            "type": "integer"
           },
-          "ticketUrl": {
+          "url": {
             "description": "Link to ticket",
-            "type": "string",
-            "required": true
+            "type": "string"
           },
           "details": {
             "description": "Any ticket details",
             "type": "string"  
+          },
+          "eventName": {
+            "description": "Event name",
+            "type": "string"  
+          },
+          "price": {
+            "description": "Ticket price",
+            "type": "number"  
           }
         }
       }
@@ -463,20 +637,20 @@
   }
 }</code></pre><p><strong>Example</strong>:</p><pre><code>{
   "hits": 3,
-  "tickets": [
+  "items": [
     {
       "id": 1,
-      "ticketUrl": "tickets/1",
+      "url": "tickets/1",
       "details": "Sector A",
     },
     {
       "id": 2,
-      "ticketUrl": "tickets/2",
+      "url": "tickets/2",
       "details": "Sector B",
     },
     {
       "id": 3,
-      "ticketUrl": "tickets/3",
+      "url": "tickets/3",
       "details": "Sector B",
     },
   ]
@@ -597,15 +771,33 @@
   "eventUrl": "events/1",
   "price": 35.5,
   "status": "free"
-}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="tickets__ticketId__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/tickets</span>/{ticketId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete specified ticket</p></div><ul class="nav nav-tabs"><li class="active"><a href="#tickets__ticketId__delete_request" data-toggle="tab">Request</a></li><li><a href="#tickets__ticketId__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tickets__ticketId__delete_request"><h3>URI Parameters</h3><ul><li><strong>ticketId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="tickets__ticketId__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="users" class="panel-title">/users</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_users__userId__tickets"><span class="parent">/users</span>/{userId}/tickets</a> <span class="methods"><a href="#users__userId__tickets_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_users__userId__tickets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#users__userId__tickets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve all tickets for specified userId</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="users__userId__tickets_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/users</span>/{userId}/tickets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve all tickets for specified userId</p></div><ul class="nav nav-tabs"><li class="active"><a href="#users__userId__tickets_get_request" data-toggle="tab">Request</a></li><li><a href="#users__userId__tickets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="users__userId__tickets_get_request"><h3>URI Parameters</h3><ul><li><strong>userId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="users__userId__tickets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="tickets__ticketId__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/tickets</span>/{ticketId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete specified ticket</p></div><ul class="nav nav-tabs"><li class="active"><a href="#tickets__ticketId__delete_request" data-toggle="tab">Request</a></li><li><a href="#tickets__ticketId__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tickets__ticketId__delete_request"><h3>URI Parameters</h3><ul><li><strong>ticketId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="tickets__ticketId__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="users" class="panel-title">/users</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_users__userId__tickets"><span class="parent">/users</span>/{userId}/tickets</a> <span class="methods"><a href="#users__userId__tickets_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_users__userId__tickets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#users__userId__tickets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve all tickets for specified</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="users__userId__tickets_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/users</span>/{userId}/tickets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve all tickets for specified</p></div><ul class="nav nav-tabs"><li class="active"><a href="#users__userId__tickets_get_request" data-toggle="tab">Request</a></li><li><a href="#users__userId__tickets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="users__userId__tickets_get_request"><h3>URI Parameters</h3><ul><li><strong>userId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>Sorting field</strong>: <em>(one of price, eventName)</em><p>Field to sort by</p><p><strong>Example</strong>:</p><pre>name</pre></li><li><strong>Sorting order</strong>: <em>(one of asc, desc)</em><p>Field to sort by</p><p><strong>Example</strong>:</p><pre>asc</pre></li><li><strong>Page size</strong>: <em>(integer)</em><p>Page size for pagination</p><p><strong>Example</strong>:</p><pre><code>10</code></pre></li><li><strong>Filter field</strong>: <em>(string)</em><p>Field to filter by connect. Used only with "value" parameter</p><p><strong>Example</strong>:</p><pre>eventName</pre></li><li><strong>Filter value</strong>: <em>(string)</em><p>Field to filter by connect. Used only with "value" parameter</p><p><strong>Example</strong>:</p><pre>Very interesting event</pre></li></ul></div><div class="tab-pane" id="users__userId__tickets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "description": "Tickets list information",
   "type": "object",
   "properties": {
-    "hits": {
-      "decription": "List length",
+    "size": {
+      "decription": "Size of current list",
       "type": "integer"  
     },
-    "tickets": {
+    "offset": {
+      "description": "Offset, for pagination",
+      "type": "integer"
+    },
+    "sort": {
+      "description": "Field name to sort",
+      "type": "string",
+      "enum": ["price", "eventName"]
+    },
+    "order": {
+      "description": "Sort order",
+      "type": "string",
+      "enum": ["asc", "desc"]
+    },
+    "hits": {
+      "decription": "Number of all hits",
+      "type": "integer"
+    }, 
+    "items": {
       "descriptions": "Tickets list",
       "type": "array",
       "items": {
@@ -613,17 +805,23 @@
         "properties": {        
           "id": {
             "description": "Ticket id",
-            "type": "integer",
-            "required": true
+            "type": "integer"
           },
-          "ticketUrl": {
+          "url": {
             "description": "Link to ticket",
-            "type": "string",
-            "required": true
+            "type": "string"
           },
           "details": {
             "description": "Any ticket details",
             "type": "string"  
+          },
+          "eventName": {
+            "description": "Event name",
+            "type": "string"  
+          },
+          "price": {
+            "description": "Ticket price",
+            "type": "number"  
           }
         }
       }
@@ -631,20 +829,20 @@
   }
 }</code></pre><p><strong>Example</strong>:</p><pre><code>{
   "hits": 3,
-  "tickets": [
+  "items": [
     {
       "id": 1,
-      "ticketUrl": "tickets/1",
+      "url": "tickets/1",
       "details": "Sector A",
     },
     {
       "id": 2,
-      "ticketUrl": "tickets/2",
+      "url": "tickets/2",
       "details": "Sector B",
     },
     {
       "id": 3,
-      "ticketUrl": "tickets/3",
+      "url": "tickets/3",
       "details": "Sector B",
     },
   ]

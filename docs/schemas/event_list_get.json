@@ -1,5 +1,5 @@
 {
-  "description": "Tickets list information",
+  "description": "Event list information",
   "type": "object",
   "properties": {
     "size": {
@@ -13,7 +13,7 @@
     "sort": {
       "description": "Field name to sort",
       "type": "string",
-      "enum": ["price", "eventName"]
+      "enum": ["name", "date", "ticketsAmount", "freeTicketsAmount"]
     },
     "order": {
       "description": "Sort order",
@@ -23,32 +23,43 @@
     "hits": {
       "decription": "Number of all hits",
       "type": "integer"
-    }, 
+    },    
     "items": {
-      "descriptions": "Tickets list",
+      "descriptions": "Events list",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {        
           "id": {
-            "description": "Ticket id",
+            "description": "Event id",
             "type": "integer"
           },
           "url": {
-            "description": "Link to ticket",
+            "description": "Link to event details",
             "type": "string"
           },
-          "details": {
-            "description": "Any ticket details",
-            "type": "string"  
-          },
-          "eventName": {
+          "name": {
             "description": "Event name",
             "type": "string"  
           },
-          "price": {
-            "description": "Ticket price",
-            "type": "number"  
+          "date": {
+            "description": "Date if event",
+            "type": "string",
+            "format": "date-time"
+          },
+          "ticketsUrl": {
+            "description": "Link to tickets",
+            "type": "string"
+          },
+          "ticketsAmount": {
+            "description": "Full tickets amount for event",
+            "type": "integer",
+            "minimum": 0
+          },
+          "freeTicketsAmount": {
+            "description": "Full tickets amount for event",
+            "type": "integer",
+            "minimum": 0
           }
         }
       }

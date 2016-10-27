@@ -1,10 +1,77 @@
 #%RAML 0.8
 
-title: Tickets booking API
+title: Tickets booking
 version: v1
+
+documentation:
+  - title: Tickets api
+    content: |
+      Api for buying tickets for any events  
+      We have the next types of entities:
+      - event
+      - ticket
+      - user  
+
+      Api provides possibility to manage *events* and *tickets*, but not *users*.
+
+  - title: Description
+    content: |
+      All data is sent and recieved as JSON. 
+      Blank fields are included as `null` instead of being omitted.
+      All timestamps are returned in ISO 8601 format:
+      ```
+      YYYY-MM-DDThh:mm:ss.sTZD
+      ```
+
+      Specifying of timezone is not nessesary.
+
+  - title: Summary representation
+    content: |
+      When you fetch a list of resources, the response includes a subset of the attributes 
+      for that resource. This is the "summary" representation of the resource.
+      You can see such behaviour when get list of tickets of list of events.
+      If you need more attribute got to detailed representation (every item contains link for it).
+  
+  - title: Detailed representation     
+    content: |
+      When you fetch an individual resource, the response typically includes all attributes 
+      for that resource. This is the "detailed" representation of the resource.  
+      The documentation provides an example response and their schemas for each API method. 
+      The example response illustrates all attributes that are returned by that method.
+
+  - title: Parameters
+    content: | 
+      Api methods for get list can recieve parameters for filter, pagination and sorting. 
+      More information you can get reading the docs.
+
+  - title: Hypermedia
+    content: |
+      Many resources may have one or more `url` properties linking to other resources. 
+      F.e. summary items contains links to detailed, also parents and children have links to each other.
+      These are meant to provide explicit URLs so that proper API clients don't need 
+      to construct URLs on their own. It is recommended that API clients use these. 
+      Doing so will make future upgrades of the API easier for developers.
+
+  - title: Pagination
+    content: |
+      All list requests provide pagination properties. Such as:
+      - *size* - page size (default: 30)
+      - *offset* - offset from begginnig (default: 0)
+      You can use them as query parameters like `?offset=30&size=10`
+
+  - title: Sorting
+    content: |
+      List requests provide ability for sorting. 
+      You can sort by any of fields you can find in summary representation.
+
+  - title: Filtering
+    content: |
+      List requests also provide ability for f. 
+      You can filter by any of fields you can find in summary representation.
 
 schemas:
   - event_get: !include schemas/event_get.json
+  - event_get_list: !include schemas/event_list_get.json
   - event_post: !include schemas/event_post.json
   - ticket_get: !include schemas/ticket_get.json
   - ticket_post: !include schemas/ticket_post.json
@@ -15,10 +82,46 @@ schemas:
 /events:
   get:
     description: Retrieve events list
+    queryParameters:
+      sort:
+        displayName: Sorting field
+        type: string
+        enum: ["name", "date", "ticketsAmount", "freeTicketsAmount"]
+        description: Field to sort by
+        example: "name"
+        required: false
+      order:
+        displayName: Sorting order
+        type: string
+        enum: ["asc", "desc"]
+        description: Field to sort by
+        example: "asc"
+        required: false
+      size:
+        displayName: Page size
+        type: integer
+        description: Page size for pagination
+        example: 10
+        required: false
+      filter:
+        displayName: Filter field
+        type: string
+        description: Field to filter by connect. Used only with "value" parameter
+        example: name
+        required: false
+      value:
+        displayName: Filter value
+        type: string
+        description: Field to filter by connect. Used only with "value" parameter
+        example: Very interesting event
+        required: false
+
     responses:
       200:
         body:
           application/json:
+            schema: event_get_list
+            example: !include examples/event_list_get.json
   post:
     description: Creates new event
     body:
@@ -29,6 +132,7 @@ schemas:
         body:
           application/json:
             schema: event_get
+            example: !include examples/event_get.json
       422:
         body:
           application/json:
@@ -41,23 +145,59 @@ schemas:
           body:
             application/json:
               schema: event_get
+              example: !include examples/event_get.json
     put:    
       description: Update event properties
       body:
         application/json:
           schema: event_get
+          example: !include examples/event_get.json
       responses:
         200:          
           body:
             application/json:
               schema: event_get
+              example: !include examples/event_get.json
         422:
           body:
             application/json:
               schema: error
     /tickets:
       get:
-        description: Retrieve a list of tickets for specified eventId
+        description: Retrieve a list of tickets for specified 
+        queryParameters:
+          sort:
+            displayName: Sorting field
+            type: string
+            enum: ["name", "date", "ticketsAmount", "freeTicketsAmount"]
+            description: Field to sort by
+            example: "name"
+            required: false
+          order:
+            displayName: Sorting order
+            type: string
+            enum: ["asc", "desc"]
+            description: Field to sort by
+            example: "asc"
+            required: false
+          size:
+            displayName: Page size
+            type: integer
+            description: Page size for pagination
+            example: 10
+            required: false
+          filter:
+            displayName: Filter field
+            type: string
+            description: Field to filter by connect. Used only with "value" parameter
+            example: price
+            required: false
+          value:
+            displayName: Filter value
+            type: string
+            description: Field to filter by connect. Used only with "value" parameter
+            example: 150
+            required: false
         responses:
           200:
             body:
@@ -80,7 +220,7 @@ schemas:
 /tickets:
   /{ticketId}:
     get:
-      description: Retrieve ticket information
+      description: Retrieve ticket information      
       responses:
         200:
           body:
@@ -107,7 +247,40 @@ schemas:
 /users:
   /{userId}/tickets:
     get:
-      description: Retrieve all tickets for specified userId
+      description: Retrieve all tickets for specified 
+      queryParameters:
+        sort:
+          displayName: Sorting field
+          type: string
+          enum: ["price", "eventName"]
+          description: Field to sort by
+          example: "name"
+          required: false
+        order:
+          displayName: Sorting order
+          type: string
+          enum: ["asc", "desc"]
+          description: Field to sort by
+          example: "asc"
+          required: false
+        size:
+          displayName: Page size
+          type: integer
+          description: Page size for pagination
+          example: 10
+          required: false
+        filter:
+          displayName: Filter field
+          type: string
+          description: Field to filter by connect. Used only with "value" parameter
+          example: eventName
+          required: false
+        value:
+          displayName: Filter value
+          type: string
+          description: Field to filter by connect. Used only with "value" parameter
+          example: Very interesting event
+          required: false
       responses:
         200:          
           body:

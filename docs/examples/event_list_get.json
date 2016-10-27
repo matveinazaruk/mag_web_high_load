@@ -1,0 +1,27 @@
+{
+  "hits": 4,
+  "size": 2,
+  "offset": 1,
+  "sort": "name",
+  "order": "desc",
+  "items": [
+    {
+      "url": "/events/1",
+      "id": 1,
+      "name": "Very interesting event",
+      "date": "2016-10-27T15:00:00+03:00",
+      "ticketsUrl": "/event/1/tickets",
+      "ticketsAmount": 123,
+      "freeTicketsAmount": 101 
+    },
+    {
+      "url": "/events/2",
+      "id": 2,
+      "name": "One more very interesting event",
+      "date": "2016-12-21T19:00:00+03:00",
+      "ticketsUrl": "/event/2/tickets",
+      "ticketsAmount": 42,
+      "freeTicketsAmount": 24 
+    }
+  ]
+}

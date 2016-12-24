@@ -6,5 +6,5 @@
 GET 	/events						controllers.EventsController.events()
 POST 	/events 					controllers.EventsController.createEvent()
 
-GET		/events/:id/tickets 		controllers.EventsController.getTickets(id: String)
-POST 	/events/:id/ticlets			controllers.EventsController.createTickets(id: String)
+GET		/events/:eventId/tickets 		controllers.EventsController.getTickets(eventId: String)
+POST 	/events/:eventId/tickets			controllers.EventsController.createTickets(eventId: String)

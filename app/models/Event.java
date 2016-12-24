@@ -14,6 +14,7 @@ import org.bson.types.ObjectId;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.Json;
+import play.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,7 +49,7 @@ public class Event {
 	}
 
 	public static Event fromJson(String json) {
-		System.out.println(json);
+		//System.out.println(json);
 		JsonNode eventNode = Json.parse(json);
 		//System.out.println(eventNode.asText());
 		return Json.fromJson(eventNode, Event.class);

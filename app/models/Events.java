@@ -14,6 +14,7 @@ import org.bson.types.ObjectId;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.Json;
+import play.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,8 +69,6 @@ public class Events {
 	}
 
 	public CompletableFuture<Event> getById(String id) {
-		// BasicDBObject eqId = new BasicDBObject();
-		// eqId.put("_id", new ObjectId("585ae54d97446f0d315c2913"));
 
         CompletableFuture<Event> result = new CompletableFuture<>();
 

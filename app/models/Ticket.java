@@ -9,10 +9,12 @@ import com.mongodb.client.result.UpdateResult;
 import com.mongodb.connection.ClusterSettings;
 import com.mongodb.ConnectionString;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 //import org.codehaus.jackson.JsonNode;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.Json;
+import play.Logger;
 
 import java.lang.Number;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ import static java.util.Arrays.asList;
 
 
 public class Ticket {
-	private String id;
+	public String id;
 	public String owner;
 	public String eventId;
 	public String eventUrl;
@@ -41,8 +43,7 @@ public class Ticket {
 
 	public static Ticket fromJson(String json) {
 		//System.out.println(json);
-		JsonNode ticketNode = Json.parse(json);
-		System.out.println(ticketNode.asText());
+		//System.out.println(ticketNode.asText());
 		return Json.fromJson(Json.parse(json), Ticket.class);
 	}
 
@@ -59,8 +60,8 @@ public class Ticket {
             .append("details", details)
             .append("price", price.toString());
 
-        if (id != null && id != "") {
-        	doc.append("id", id);
+        if (id != null) {
+        	doc.append("_id", new ObjectId(id));
         }
 
     	return doc;

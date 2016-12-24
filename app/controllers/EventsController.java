@@ -29,6 +29,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 import java.util.stream.Collectors;
 import play.libs.Json;
+import play.Logger;
 
 import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Updates.inc;
@@ -39,7 +40,7 @@ import static java.util.Arrays.asList;
 import models.Event;
 import models.Events;
 import models.Ticket;
-//import models.Events;
+import models.Tickets;
 
 
 public class EventsController extends Controller {
@@ -50,12 +51,14 @@ public class EventsController extends Controller {
     MongoClient mongoClient;
     MongoDatabase database;
     Events events;
+    Tickets tickets;
 
     @Inject
     public EventsController() {
         mongoClient = MongoClients.create();
         database = mongoClient.getDatabase(DB_NAME);
         events = new Events(database);
+        tickets = new Tickets(database, events);
     }
 
     public CompletableFuture<Result> events() {
@@ -76,19 +79,20 @@ public class EventsController extends Controller {
     @BodyParser.Of(BodyParser.TolerantJson.class)
     public CompletableFuture<Result> createTickets(String eventId) {
 
-        Event event = Event.fromJson(request().body().asJson().toString());
-        CompletableFuture result = events.addEvent(event);
+        List<Ticket> ticketsToCreate = tickets.fromJson(request().body().asJson().toString());
+        System.out.println(ticketsToCreate);
+        CompletableFuture<String> result = tickets.addTicketsToEvent(ticketsToCreate, eventId);
 
-        return result.thenApply((res) -> created(res.toString()));
+        return result.thenApply((res) -> created(res));
 
     }
 
 
     public CompletableFuture<Result> getTickets(String eventId) {
 
-        CompletableFuture<Event> result = events.getById(eventId);
+        CompletableFuture<ArrayList<Ticket>> result = tickets.getTicketsForEvent(eventId);
 
-        return result.thenApply((event) -> created(event != null ? event.toJson() : "Not found"));
+        return result.thenApply((ticks) -> created(ticks != null ? Json.toJson(ticks).toString() : "Not found"));
 
     }
 }

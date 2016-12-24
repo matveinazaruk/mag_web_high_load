@@ -44,11 +44,16 @@ public class Events {
         eventsCollection.find().into(new ArrayList<Document>(),
                 (ArrayList<Document> docs, Throwable throwable)-> {
                 	ArrayList<Event> events = new ArrayList<>();
-                	docs.forEach(doc -> {
-                		Event event = Event.fromJson(doc.toJson());
-                		event.id = doc.getObjectId("_id").toString();
-            			events.add(event);
-                	});
+                    if (docs != null) {
+                        Logger.info("Collecting events.");
+                        docs.forEach(doc -> {
+                            Event event = Event.fromJson(doc.toJson());
+                            event.id = doc.getObjectId("_id").toString();
+                            events.add(event);
+                        });
+                    } else {
+                        Logger.info("There are no any events.");
+                    }
                     result.complete(events);
                 }
             );
@@ -61,6 +66,7 @@ public class Events {
         CompletableFuture<String> result = new CompletableFuture<>();
 		eventsCollection.insertOne(event.toMongoDocument(), 
         	(Void res, final Throwable t) -> {
+                Logger.info("Trying to insert event: {}", event.toJson());
     			result.complete("success");
         	}
         );
@@ -75,10 +81,13 @@ public class Events {
         eventsCollection.find(eq("_id", new ObjectId(id))).first(
                 (Document doc, Throwable throwable)-> {
                 	Event event = null;
-                	if (doc != null) {
+                    if (doc != null) {
+                        Logger.info("Get event successfully: {}", id);
 	            		event = Event.fromJson(doc.toJson());
 	            		event.id = doc.getObjectId("_id").toString();
-                	}
+                	} else {
+                        Logger.info("Get event failed: {}", id);
+                    }
                     result.complete(event != null ? Event.fromJson(event.toJson()) : null);            
                 }
             );

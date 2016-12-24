@@ -45,7 +45,8 @@ import models.Tickets;
 
 public class EventsController extends Controller {
 
-    private static final String DB_NAME = "mydb";
+    private static final String CONNECTION_STRING =
+        "mongodb://207.154.192.51,138.68.110.78,207.154.202.219/?replicaSet=eventsrepl";
 
     private Random random = new Random();
     MongoClient mongoClient;

@@ -46,6 +46,7 @@ public class Tickets {
 
 	public CompletableFuture<ArrayList> getTickets() {
         CompletableFuture<ArrayList> result = new CompletableFuture<>();
+        Logger.info("Finding tickets");
 
         ticketsCollection.find().map(Document::toJson).map(Ticket::fromJson)
             .into(new ArrayList<Ticket>(),

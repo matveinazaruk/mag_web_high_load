@@ -68,11 +68,16 @@ public class Events {
 
     public CompletableFuture<String> addEvent(Event event) {
         CompletableFuture<String> result = new CompletableFuture<>();
-        eventsCollection.insertOne(event.toMongoDocument(), 
-            (Void res, final Throwable t) -> {
-                Logger.debug("Trying to insert event");
-                result.complete("success");
-            }
+		eventsCollection.insertOne(event.toMongoDocument(), 
+        	(Void res, final Throwable t) -> {
+                    if (t != null) {
+                        Logger.error("Not inserted", t);
+                        result.complete("error");
+                    } else { 
+                        Logger.info("Trying to insert event: {}", event.toJson());
+    		        result.complete("success");
+                    }
+        	}
         );
 
         return result;
@@ -100,5 +105,5 @@ public class Events {
             );
 
         return result;
-    }
+	}
 }

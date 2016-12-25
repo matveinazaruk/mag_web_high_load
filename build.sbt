@@ -19,4 +19,4 @@ libraryDependencies += javaWs % "test"
 // must exclude dom4j in hibernate core because it causes staxeventreader exceptions
 // http://stackoverflow.com/questions/36222306/caused-by-java-lang-classnotfoundexception-org-dom4j-io-staxeventreader
 
-libraryDependencies += "org.mongodb" % "mongodb-driver-async" % "3.4.0"
+libraryDependencies += "org.mongodb" % "mongodb-driver-async" % "3.2.2"

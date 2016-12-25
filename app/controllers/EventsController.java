@@ -46,7 +46,7 @@ import models.Tickets;
 public class EventsController extends Controller {
     private static final String DB_NAME = "eventsdb";
     private static final String CONNECTION_STRING =
-        "mongodb://207.154.192.51,138.68.110.78,207.154.202.219/?replicaSet=eventsrepl";
+        "mongodb://207.154.192.51:27017,138.68.110.78:27017,207.154.202.219:27017/?replicaSet=eventsrepl&connectTimeoutMS=300000";
 
     private Random random = new Random();
     MongoClient mongoClient;
@@ -56,7 +56,7 @@ public class EventsController extends Controller {
 
     @Inject
     public EventsController() {
-        mongoClient = MongoClients.create();
+        mongoClient = MongoClients.create(new ConnectionString(CONNECTION_STRING));
         database = mongoClient.getDatabase(DB_NAME);
         events = new Events(database);
         tickets = new Tickets(database, events);

@@ -66,8 +66,13 @@ public class Events {
         CompletableFuture<String> result = new CompletableFuture<>();
 		eventsCollection.insertOne(event.toMongoDocument(), 
         	(Void res, final Throwable t) -> {
-                Logger.info("Trying to insert event: {}", event.toJson());
-    			result.complete("success");
+                    if (t != null) {
+                        Logger.error("Not inserted", t);
+                        result.complete("error");
+                    } else { 
+                        Logger.info("Trying to insert event: {}", event.toJson());
+    		        result.complete("success");
+                    }
         	}
         );
 

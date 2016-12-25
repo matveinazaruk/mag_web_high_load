@@ -30,36 +30,43 @@ import static java.util.Arrays.asList;
 
 
 public class Event {
-	public String id;
-	public String name;
-	public String url;
-	public String ticketsUrl;
-	public ZonedDateTime date;
-	public Integer ticketsAmount;
-	public Integer freeTicketsAmount;
+    public String id;
+    public String name;
+    public String url;
+    public String ticketsUrl;
+    public ZonedDateTime date;
+    public Integer ticketsAmount;
+    public Integer freeTicketsAmount;
 
-	public Event() {}
+    public Event() {}
 
-	public String getDate() {
-		return date.toString();
-	}
+    public String getDate() {
+        return date.toString();
+    }
 
-	public void setDate(String dateString) {
-		date = ZonedDateTime.parse(dateString);
-	}
+    public void setDate(String dateString) {
+        date = ZonedDateTime.parse(dateString);
+    }
 
-	public static Event fromJson(String json) {
-		//System.out.println(json);
-		JsonNode eventNode = Json.parse(json);
-		//System.out.println(eventNode.asText());
-		return Json.fromJson(eventNode, Event.class);
-	}
+    public static Event fromJson(String json) {
+        //System.out.println(json);
+        JsonNode eventNode = Json.parse(json);
+        //System.out.println(eventNode.asText());
+        Event event = Json.fromJson(eventNode, Event.class);
+        if (event.id != null && event.url == null) {
+            event.url = "/events/" + event.id;
+        }
+        if (event.id != null && event.ticketsUrl == null) {
+            event.ticketsUrl = event.url + "/tickets";
+        }
+        return event;
+    }
 
-	public String toJson() {
-		return Json.toJson(this).toString();
-	}
+    public String toJson() {
+        return Json.toJson(this).toString();
+    }
 
-	public Document toMongoDocument() {
+    public Document toMongoDocument() {
         Document doc = new Document()
             .append("name", name)
             .append("date", date.toString())
@@ -67,10 +74,16 @@ public class Event {
             .append("freeTicketsAmount", freeTicketsAmount);
 
         if (id != null) {
-        	doc.append("_id", new ObjectId(id));
+            if (url == null) {
+                doc.append("url", "/events/" + id);
+            }
+            if (ticketsUrl == null) {
+                doc.append("ticketsUrl", "/events/" + id + "/tickets");
+            }
+            doc.append("_id", new ObjectId(id));
         }
 
-    	return doc;
-	}
+        return doc;
+    }
 
 }

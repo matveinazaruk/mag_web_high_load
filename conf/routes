@@ -3,8 +3,14 @@
 # ~~~~
 
 # Home page
-GET 	/events						controllers.EventsController.events()
-POST 	/events 					controllers.EventsController.createEvent()
+GET     /events                         controllers.EventsController.events()
+POST    /events                         controllers.EventsController.createEvent()
 
-GET		/events/:eventId/tickets 		controllers.EventsController.getTickets(eventId: String)
-POST 	/events/:eventId/tickets			controllers.EventsController.createTickets(eventId: String)
+GET     /events/:eventId                controllers.EventsController.getEvent(eventId: String)
+
+GET     /events/:eventId/tickets        controllers.EventsController.getTickets(eventId: String)
+POST    /events/:eventId/tickets        controllers.EventsController.createTickets(eventId: String)
+
+
+GET     /tickets/:ticketId              controllers.EventsController.getTicket(ticketId: String)
+PUT     /tickets/:ticketId              controllers.EventsController.updateTicket(ticketId: String)

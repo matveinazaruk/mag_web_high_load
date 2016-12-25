@@ -10,7 +10,6 @@ import com.mongodb.connection.ClusterSettings;
 import com.mongodb.ConnectionString;
 import org.bson.Document;
 import org.bson.types.ObjectId;
-//import org.codehaus.jackson.JsonNode;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.Json;
@@ -31,40 +30,49 @@ import static java.util.Arrays.asList;
 
 
 public class Ticket {
-	public String id;
-	public String owner;
-	public String eventId;
-	public String eventUrl;
-	public String eventName;
-	public String details;
-	public Number price;
-	public String status;
+    public String id;
+    public String url;
+    public String owner;
+    public String eventId;
+    public String eventUrl;
+    public String eventName;
+    public String details;
+    public Number price;
+    public String status;
 
 
-	public static Ticket fromJson(String json) {
-		//System.out.println(json);
-		//System.out.println(ticketNode.asText());
-		return Json.fromJson(Json.parse(json), Ticket.class);
-	}
+    public static Ticket fromJson(String json) {
+        //System.out.println(json);
+        //System.out.println(ticketNode.asText());
+        Ticket ticket = Json.fromJson(Json.parse(json), Ticket.class);
+        if (ticket.id != null && ticket.url == null) {
+            ticket.url = "/tickets/" + ticket.id;
+        }
+        return ticket;
+    }
 
-	public String toJson() {
-		return Json.toJson(this).toString();
-	}
+    public String toJson() {
+        return Json.toJson(this).toString();
+    }
 
-	public Document toMongoDocument() {
+    public Document toMongoDocument() {
         Document doc = new Document()
-            .append("owner", owner)
-            .append("eventId", eventId)
-            .append("eventName", eventName)
-            .append("eventUrl", eventName)
-            .append("details", details)
-            .append("price", price.toString());
+            .append("owner", owner == null ? "" : owner)
+            .append("eventId", eventId == null ? "" : eventId)
+            .append("eventName", eventName == null ? "" : eventName)
+            .append("eventUrl", eventUrl == null ? "" : eventUrl)
+            .append("details", details == null ? "" : details)
+            .append("price", price == null ? 0 : price)
+            .append("status", status == null ? "free" : status);
 
         if (id != null) {
-        	doc.append("_id", new ObjectId(id));
+            if (url == null) {
+                doc.append("url", "/tickets/" + id);
+            }
+            doc.append("_id", new ObjectId(id));
         }
 
-    	return doc;
-	}
+        return doc;
+    }
 
 }

@@ -28,6 +28,7 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 import java.util.stream.Collectors;
+import java.util.concurrent.ThreadLocalRandom;
 import play.libs.Json;
 import play.Logger;
 
@@ -47,6 +48,8 @@ public class EventsController extends Controller {
     private static final String DB_NAME = "eventsdb";
     private static final String CONNECTION_STRING =
         "mongodb://207.154.192.51,138.68.110.78,207.154.202.219/?replicaSet=eventsrepl";
+
+    private static final List<String> USERS = new ArrayList(asList("matthew", "andrew", "bob", "samuel"));
 
     private Random random = new Random();
     MongoClient mongoClient;
@@ -81,10 +84,24 @@ public class EventsController extends Controller {
     public CompletableFuture<Result> createTickets(String eventId) {
 
         List<Ticket> ticketsToCreate = tickets.fromJson(request().body().asJson().toString());
-        System.out.println(ticketsToCreate);
         CompletableFuture<String> result = tickets.addTicketsToEvent(ticketsToCreate, eventId);
 
         return result.thenApply((res) -> created(res));
+
+    }
+
+    @BodyParser.Of(BodyParser.TolerantJson.class)
+    public CompletableFuture<Result> updateTicket(String ticketId) {
+
+        Ticket ticketToUpdate = Ticket.fromJson(request().body().asJson().toString());
+        ticketToUpdate.id = ticketId;
+        int ownerIdx = ThreadLocalRandom.current().nextInt(USERS.size());
+        ticketToUpdate.owner = USERS.get(ownerIdx);
+        System.out.println(ticketToUpdate.toJson());
+        CompletableFuture<String> result = tickets.tryToBookTicket(ticketToUpdate);
+        // CompletableFuture<String> result = tickets.addTicketsToEvent(ticketsToCreate, eventId);
+        return result.thenApply((res) -> ok(res));
+        // return result.thenApply((res) -> created(res));
 
     }
 
@@ -94,6 +111,22 @@ public class EventsController extends Controller {
         CompletableFuture<ArrayList<Ticket>> result = tickets.getTicketsForEvent(eventId);
 
         return result.thenApply((ticks) -> created(ticks != null ? Json.toJson(ticks).toString() : "Not found"));
+
+    }
+
+    public CompletableFuture<Result> getTicket(String ticketId) {
+
+        CompletableFuture<Ticket> result = tickets.getById(ticketId);
+
+        return result.thenApply((tick) -> created(tick != null ? tick.toJson() : "Not found"));
+
+    }
+
+    public CompletableFuture<Result> getEvent(String eventId) {
+
+        CompletableFuture<Event> result = events.getById(eventId);
+
+        return result.thenApply((evt) -> ok(evt != null ? evt.toJson() : "Not found"));
 
     }
 }

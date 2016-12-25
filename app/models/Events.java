@@ -30,22 +30,26 @@ import static java.util.Arrays.asList;
 
 public class Events {
 
-	private static final String COLLECTION_NAME = "events";
+    private static final String COLLECTION_NAME = "events";
 
-	MongoCollection<Document> eventsCollection;
+    MongoCollection<Document> eventsCollection;
 
-	public Events(MongoDatabase db) {
-		eventsCollection = db.getCollection("events");
-	}
+    public Events(MongoDatabase db) {
+        eventsCollection = db.getCollection("events");
+    }
 
-	public CompletableFuture<ArrayList> getEvents() {
+    public CompletableFuture<ArrayList> getEvents() {
         CompletableFuture<ArrayList> result = new CompletableFuture<>();
 
         eventsCollection.find().into(new ArrayList<Document>(),
-                (ArrayList<Document> docs, Throwable throwable)-> {
-                	ArrayList<Event> events = new ArrayList<>();
+                (ArrayList<Document> docs, Throwable t)-> {
+                    if (t != null) {
+                        Logger.error("Error getting events", t);
+                    }
+
+                    ArrayList<Event> events = new ArrayList<>();
                     if (docs != null) {
-                        Logger.info("Collecting events.");
+                        Logger.debug("Collecting events.");
                         docs.forEach(doc -> {
                             Event event = Event.fromJson(doc.toJson());
                             event.id = doc.getObjectId("_id").toString();
@@ -59,39 +63,42 @@ public class Events {
             );
 
         return result;
-	}
+    }
 
 
-	public CompletableFuture<String> addEvent(Event event) {
+    public CompletableFuture<String> addEvent(Event event) {
         CompletableFuture<String> result = new CompletableFuture<>();
-		eventsCollection.insertOne(event.toMongoDocument(), 
-        	(Void res, final Throwable t) -> {
-                Logger.info("Trying to insert event: {}", event.toJson());
-    			result.complete("success");
-        	}
+        eventsCollection.insertOne(event.toMongoDocument(), 
+            (Void res, final Throwable t) -> {
+                Logger.debug("Trying to insert event");
+                result.complete("success");
+            }
         );
 
-		return result;
-	}
+        return result;
+    }
 
-	public CompletableFuture<Event> getById(String id) {
+    public CompletableFuture<Event> getById(String id) {
 
         CompletableFuture<Event> result = new CompletableFuture<>();
 
         eventsCollection.find(eq("_id", new ObjectId(id))).first(
-                (Document doc, Throwable throwable)-> {
-                	Event event = null;
+                (Document doc, Throwable t)-> {
+                    Event event = null;
+                    if (t != null) {
+                        Logger.error("Error getting event by id", t);
+                    }
                     if (doc != null) {
-                        Logger.info("Get event successfully: {}", id);
-	            		event = Event.fromJson(doc.toJson());
-	            		event.id = doc.getObjectId("_id").toString();
-                	} else {
-                        Logger.info("Get event failed: {}", id);
+                        Logger.debug("Get event successfully: {}", id);
+                        event = Event.fromJson(doc.toJson());
+                        event.id = doc.getObjectId("_id").toString();
+                    } else {
+                        Logger.warn("Get event failed: {}", id);
                     }
                     result.complete(event != null ? Event.fromJson(event.toJson()) : null);            
                 }
             );
 
         return result;
-	}
+    }
 }

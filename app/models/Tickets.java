@@ -75,6 +75,10 @@ public class Tickets {
                     docs.forEach(doc -> {
                         Ticket ticket = Ticket.fromJson(doc.toJson());
                         ticket.id = doc.getObjectId("_id").toString();
+                        if (ticket.id != null && ticket.url == null) {
+                            ticket.url = "/tickets/" + ticket.id;
+                        }
+
                         tickets.add(ticket);
                     });
                 }

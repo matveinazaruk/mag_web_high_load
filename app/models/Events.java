@@ -53,6 +53,13 @@ public class Events {
                         docs.forEach(doc -> {
                             Event event = Event.fromJson(doc.toJson());
                             event.id = doc.getObjectId("_id").toString();
+                                    if (event.id != null && event.url == null) {
+                                event.url = "/events/" + event.id;
+                            }
+                            if (event.id != null && event.ticketsUrl == null) {
+                                event.ticketsUrl = event.url + "/tickets";
+                            }
+
                             events.add(event);
                         });
                     } else {

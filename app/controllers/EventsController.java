@@ -15,7 +15,9 @@ import com.mongodb.async.SingleResultCallback;
 import com.mongodb.async.client.*;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
+import com.mongodb.connection.ClusterConnectionMode;
 import com.mongodb.connection.ClusterSettings;
+import com.mongodb.connection.ClusterType;
 import com.mongodb.connection.ConnectionPoolSettings;
 import com.mongodb.ConnectionString;
 import com.mongodb.ReadPreference;
@@ -73,6 +75,8 @@ public class EventsController extends Controller {
             .hosts(servers)
             .requiredReplicaSetName("eventsrepl")
             .description("Events replica set")
+            .mode(ClusterConnectionMode.MULTIPLE)
+            .requiredClusterType(ClusterType.REPLICA_SET)
             .build();
 
         ConnectionPoolSettings connectionPoolSettings = ConnectionPoolSettings.builder()

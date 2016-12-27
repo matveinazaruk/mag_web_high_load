@@ -80,8 +80,9 @@ public class EventsController extends Controller {
             .build();
 
         ConnectionPoolSettings connectionPoolSettings = ConnectionPoolSettings.builder()
-            .maxWaitQueueSize(1500)
-            .maxWaitTime(30, TimeUnit.SECONDS)
+            .maxWaitQueueSize(2500)
+            .maxSize(1500)
+            .maxWaitTime(300, TimeUnit.SECONDS)
             .build();
 
         MongoClientSettings settings = MongoClientSettings.builder()

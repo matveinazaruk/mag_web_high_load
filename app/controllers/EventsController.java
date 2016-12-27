@@ -130,10 +130,10 @@ public class EventsController extends Controller {
         ticketToUpdate.id = ticketId;
         int ownerIdx = ThreadLocalRandom.current().nextInt(USERS.size());
         ticketToUpdate.owner = USERS.get(ownerIdx);
-        System.out.println(ticketToUpdate.toJson());
+        //System.out.println(ticketToUpdate.toJson());
         CompletableFuture<String> result = tickets.tryToBookTicket(ticketToUpdate);
         // CompletableFuture<String> result = tickets.addTicketsToEvent(ticketsToCreate, eventId);
-        return result.thenApply((res) -> ok(res));
+        return result.thenApply((res) -> res == "success" ? ok(res) : internalServerError(res));
         // return result.thenApply((res) -> created(res));
 
     }

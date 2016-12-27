@@ -170,6 +170,7 @@ public class Tickets {
                 if (doc != null) {
                     result.complete("success");
                 } else {
+                    Logger.wa("Ticket {} not found", ticket.id);
                     result.complete("error");
                 }
             }

@@ -111,7 +111,7 @@ public class EventsController extends Controller {
 
         CompletableFuture<ArrayList<Ticket>> result = tickets.getTicketsForEvent(eventId);
 
-        return result.thenApply((ticks) -> created(ticks != null ? Json.toJson(ticks).toString() : "Not found"));
+        return result.thenApply((ticks) -> ok(ticks != null ? Json.toJson(ticks).toString() : "Not found"));
 
     }
 
@@ -119,7 +119,7 @@ public class EventsController extends Controller {
 
         CompletableFuture<Ticket> result = tickets.getById(ticketId);
 
-        return result.thenApply((tick) -> created(tick != null ? tick.toJson() : "Not found"));
+        return result.thenApply((tick) -> ok(tick != null ? tick.toJson() : "Not found"));
 
     }
 

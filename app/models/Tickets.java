@@ -158,9 +158,9 @@ public class Tickets {
 
     public CompletableFuture<String> tryToBookTicket(Ticket ticket) {
         CompletableFuture<String> result = new CompletableFuture<>();
-
+        String status = ticket.status == "free" ? "sold" : "free";
         ticketsCollection.findOneAndUpdate(
-            and(eq("_id", new ObjectId(ticket.id)), eq("status", "free")),
+            and(eq("_id", new ObjectId(ticket.id)), eq("status", status)),
             new Document("$set", ticket.toMongoDocument()),
             (Document doc, Throwable t) -> {
                 if (t != null) {
@@ -170,7 +170,7 @@ public class Tickets {
                 if (doc != null) {
                     result.complete("success");
                 } else {
-                    Logger.warn("Ticket {} not found", ticket.id);
+                    Logger.warn("Ticket {} with status {} not found", ticket.id, status);
                     result.complete("error");
                 }
             }

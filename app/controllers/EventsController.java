@@ -1,6 +1,7 @@
 package controllers;
 
 import play.data.FormFactory;
+import play.cache.Cached;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -47,7 +48,7 @@ import models.Tickets;
 public class EventsController extends Controller {
     private static final String DB_NAME = "eventsdb";
     private static final String CONNECTION_STRING =
-        "mongodb://207.154.192.51:27017,138.68.110.78:27017,207.154.202.219:27017/?replicaSet=eventsrepl&connectTimeoutMS=300000";
+        "mongodb://207.154.192.51:27017,138.68.110.78:27017,207.154.202.219:27017/?replicaSet=eventsrepl&connectTimeoutMS=300000&readPreference=nearest";
 
     private static final List<String> USERS = new ArrayList(asList("matthew", "andrew", "bob", "samuel"));
 
@@ -65,6 +66,7 @@ public class EventsController extends Controller {
         tickets = new Tickets(database, events);
     }
 
+    @Cached(key = "events_list")
     public CompletableFuture<Result> events() {
         CompletableFuture result = events.getEvents();
         return result.thenApply((evs) -> ok(Json.toJson(evs)));
@@ -104,7 +106,6 @@ public class EventsController extends Controller {
         // return result.thenApply((res) -> created(res));
 
     }
-
 
     public CompletableFuture<Result> getTickets(String eventId) {
 

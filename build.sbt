@@ -14,6 +14,9 @@ libraryDependencies += "dom4j" % "dom4j" % "1.6"
 libraryDependencies += "org.mockito" % "mockito-core" % "2.1.0"
 
 libraryDependencies += javaWs % "test"
+libraryDependencies ++= Seq(
+  cache
+)
 
 // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
 // must exclude dom4j in hibernate core because it causes staxeventreader exceptions

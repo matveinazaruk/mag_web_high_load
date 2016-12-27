@@ -83,6 +83,7 @@ public class EventsController extends Controller {
         MongoClientSettings settings = MongoClientSettings.builder()
             .clusterSettings(clusterSettings)
             .connectionPoolSettings(connectionPoolSettings)
+            .readPreference(ReadPreference.nearest())
             .build();
 
         mongoClient = MongoClients.create(settings);

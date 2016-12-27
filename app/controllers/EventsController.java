@@ -10,12 +10,15 @@ import play.mvc.BodyParser;
 
 import com.mongodb.Block;
 import com.mongodb.ServerAddress;
+import com.mongodb.async.client.MongoClientSettings;
 import com.mongodb.async.SingleResultCallback;
 import com.mongodb.async.client.*;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import com.mongodb.connection.ClusterSettings;
+import com.mongodb.connection.ConnectionPoolSettings;
 import com.mongodb.ConnectionString;
+import com.mongodb.ReadPreference;
 import org.bson.Document;
 
 import javax.inject.Inject;
@@ -30,6 +33,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 import java.util.stream.Collectors;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 import play.libs.Json;
 import play.Logger;
 
@@ -60,7 +64,28 @@ public class EventsController extends Controller {
 
     @Inject
     public EventsController() {
-        mongoClient = MongoClients.create(new ConnectionString(CONNECTION_STRING));
+        List servers = asList(
+            new ServerAddress("207.154.192.51:27017"),
+            new ServerAddress("138.68.110.78:27017"),
+            new ServerAddress("207.154.202.219:27017")
+        );
+        ClusterSettings clusterSettings = ClusterSettings.builder()
+            .hosts(servers)
+            .requiredReplicaSetName("eventsrepl")
+            .description("Events replica set")
+            .build();
+
+        ConnectionPoolSettings connectionPoolSettings = ConnectionPoolSettings.builder()
+            .maxWaitQueueSize(1500)
+            .maxWaitTime(30, TimeUnit.SECONDS)
+            .build();
+
+        MongoClientSettings settings = MongoClientSettings.builder()
+            .clusterSettings(clusterSettings)
+            .connectionPoolSettings(connectionPoolSettings)
+            .build();
+
+        mongoClient = MongoClients.create(settings);
         database = mongoClient.getDatabase(DB_NAME);
         events = new Events(database);
         tickets = new Tickets(database, events);

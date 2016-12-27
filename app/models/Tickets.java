@@ -62,6 +62,31 @@ public class Tickets {
         return result;
     }
 
+    public CompletableFuture<ArrayList<Ticket>> getAllTickets() {
+        CompletableFuture<ArrayList<Ticket>> result = new CompletableFuture<>();
+        Logger.info("Getting all tickets");
+        ticketsCollection.find().into(new ArrayList<Document>(),
+            (ArrayList<Document> docs, Throwable t)-> {
+                if (t != null) {
+                    Logger.error("Error getting tickets for event", t);
+                }
+                ArrayList<Ticket> tickets = new ArrayList<>();
+                if (docs != null) {                    
+                    docs.forEach(doc -> {
+                        Ticket ticket = Ticket.fromJson(doc.toJson());
+                        ticket.id = doc.getObjectId("_id").toString();
+                        if (ticket.id != null && ticket.url == null) {
+                            ticket.url = "/tickets/" + ticket.id;
+                        }
+
+                        tickets.add(ticket);
+                    });
+                }
+                result.complete(tickets);
+            });
+        return result;   
+    }
+
     public CompletableFuture<ArrayList<Ticket>> getTicketsForEvent(String eventId) {
         CompletableFuture<ArrayList<Ticket>> result = new CompletableFuture<>();
         Logger.info("Finding tickets for event {}", eventId);

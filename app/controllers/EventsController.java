@@ -138,6 +138,17 @@ public class EventsController extends Controller {
 
     }
 
+    public CompletableFuture<Result> getAllTickets() {
+
+        CompletableFuture<ArrayList<Ticket>> result = tickets.getAllTickets();
+
+        return result.thenApply((ticks) -> ok(ticks != null ? Json.toJson(ticks).toString() : "Not found"));
+
+    }
+
+
+
+
     public CompletableFuture<Result> getTickets(String eventId) {
 
         CompletableFuture<ArrayList<Ticket>> result = tickets.getTicketsForEvent(eventId);

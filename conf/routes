@@ -12,5 +12,6 @@ GET     /events/:eventId/tickets        controllers.EventsController.getTickets(
 POST    /events/:eventId/tickets        controllers.EventsController.createTickets(eventId: String)
 
 
+GET     /tickets/             			controllers.EventsController.getAllTickets()
 GET     /tickets/:ticketId              controllers.EventsController.getTicket(ticketId: String)
 PUT     /tickets/:ticketId              controllers.EventsController.updateTicket(ticketId: String)
